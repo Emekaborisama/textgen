@@ -6,16 +6,10 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.layers import Dropout
-
 import numpy as np
 from tensorflow import keras
 import random
 import matplotlib.pyplot as plt
-
-
-
-
-
 
 
 def loaddata(data):
@@ -23,7 +17,6 @@ def loaddata(data):
         Corpus = f.readlines()  
     Corpus = ' '.join(Corpus).lower().split('\n')
     return Corpus
-
 
 
 class tensortext:
