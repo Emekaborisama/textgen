@@ -1,6 +1,0 @@
-README.md
-setup.py
-textgen.egg-info/PKG-INFO
-textgen.egg-info/SOURCES.txt
-textgen.egg-info/dependency_links.txt
-textgen.egg-info/top_level.txt

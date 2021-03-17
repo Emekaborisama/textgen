@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
-Name: textgen
-Version: 0.1.0
+Name: text-gen
+Version: 0.2.0
 Summary: build a text generation model
 Home-page: https://github.com/Emekaborisama/textgen
 Author: Emeka Boris Ama
