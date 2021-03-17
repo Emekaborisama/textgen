@@ -1,0 +1,8 @@
+pandas
+tensorflow
+torchvision
+numpy
+matplotlib
+keras
+twine
+

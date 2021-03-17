@@ -131,6 +131,10 @@ class tensortext:
             #Returns the seed plus generated text
         print(sample_text)
         return sample_text
+
+
+    """def save()
+    def load()"""
     
     def plot_loss_accuracy(self):
         '''Visualizes the performance of the model in-between epochs'''
