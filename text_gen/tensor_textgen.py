@@ -102,7 +102,7 @@ class tensortext:
         print(self.model.summary())
         return self.model
     
-    def fit(self,loss, optimizer, metrics, epochs, verbose, patience):
+    def fit(self,loss, optimizer,batch, metrics, epochs, verbose, patience):
         #self.predictors, self._label, self.maxSequenceLen, self.totalwords = seq_data
         
     
