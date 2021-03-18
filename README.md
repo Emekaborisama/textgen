@@ -1,7 +1,7 @@
 
 <h1 align="center">
 <p>Text Gen :goat:</p>
-  <span> give me a star :star: </span>
+
 <p align="center">
 
 <img alt="python" src="https://img.shields.io/badge/python-%3E%3D3.6-blue?logo=python">
@@ -81,3 +81,10 @@ pipeline.predict('hello love')
 ```python
 pipeline.plot_loss_accuracy()
 ```
+
+
+<h1 align="center">
+<span> give me a star :star: </span> :goat:
+
+<p align="center">
+
