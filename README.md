@@ -16,7 +16,7 @@
 
 <p align="center">
 Text gen is a python library that allow you build a custom text generation model with ease :smile:
- Something sweet built with Tensorflow - This is the brain of rosalove ai(rosalove.xyz)
+ Something sweet built with Tensorflow and Pytorch - This is the brain of rosalove ai(rosalove.xyz)
 
 </p>
 
