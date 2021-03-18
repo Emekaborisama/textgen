@@ -1,7 +1,4 @@
-./build/
-./dist/
-./text_gen.egg-info/
-.*/egg/
-
 .*
 !/.gitignore
+/build/
+/dist/
