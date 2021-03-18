@@ -1,6 +1,6 @@
 
 <h1 align="center">
-<p>Text Gen :zap:</p>
+<p>Text Gen :goat:</p>
 <p align="center">
 
 <img alt="python" src="https://img.shields.io/badge/python-%3E%3D3.6-blue?logo=python">
