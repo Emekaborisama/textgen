@@ -84,7 +84,7 @@ pipeline.plot_loss_accuracy()
 
 
 <h1 align="center">
-<span> give me a star :star: </span> :goat:
+<span> Give me a star :star: </span> 🐉
 
 <p align="center">
 
