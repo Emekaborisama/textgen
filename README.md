@@ -16,6 +16,67 @@
 
 <p align="center">
 Text gen is a python library that allow you build a custom text generation model with ease :smile:
+ Something sweet built with Tensorflow - This is the brain of [rosalove ai](rosalove.xyz)
+
 </p>
 
-Something sweet built with Tensorflow - This is the brain of [rosalove ai](rosalove.xyz)
+
+## How to use it
+
+
+```bash
+pip install -U text-gen
+```
+
+```python
+from text_gen import tensor_textgen as ttg
+```
+#### load data
+```python
+data = 'rosalove.csv'
+text = ttg.loaddata(data)
+```
+
+
+#### parameters
+```python 
+activation = 'softmax'
+lstmlayer = 128
+padding_method = 'pre'
+
+loss='categorical_crossentropy'
+optimizer='adam'
+metrics='accuracy'
+epochs=100
+verbose = 0
+patience = 10
+batch_size = 300
+
+```
+
+
+```python
+pipeline = tensor_textgen.tensortext(text)
+seq_text = pipeline.sequence(padding_method)
+configg = pipeline.configmodel(seq_text, lstmlayer, activation)
+
+```
+
+
+#### train model
+```python
+model_history = pipeline.fit(loss = loss, optimizer = optimizer, batch_size = batch_size, metrics = metrics, epochs = epochs, verbose = verbose, patience = patience)
+
+```
+
+
+#### generate text using the phrase
+```python
+pipeline.predict('hello love')
+```
+
+
+#### plot loss and accuracy
+```python
+pipeline.plot_loss_accuracy()
+```
