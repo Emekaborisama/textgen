@@ -84,12 +84,12 @@ pipeline.plot_loss_accuracy()
 
 
 <h1 align="center">
-<span> Give me a star :star: </span> 🐉
+<span> Give us a star :star: </span> 🐉
 </h1>
 
 
 Contributors 
 
-- [Emeka Boris Ama]('https://twitter.com/emeka_boris)
+- [Emeka Boris Ama](https://twitter.com/emeka_boris)
 - [King Zikie](https://twitter.com/kingzikie)
 - [David](https://twitter.com/iEphods)
