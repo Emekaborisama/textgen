@@ -30,7 +30,7 @@ pip install -U text-gen
 ```
 
 ```python
-from text_gen import tensor_textgen as ttg
+from text_gen import ten_textgen as ttg
 ```
 #### load data
 ```python
@@ -57,7 +57,7 @@ batch_size = 300
 
 
 ```python
-pipeline = tensor_textgen.tensortext(text)
+pipeline = ttg.tentext(text)
 seq_text = pipeline.sequence(padding_method)
 configg = pipeline.configmodel(seq_text, lstmlayer, activation)
 
