@@ -90,6 +90,6 @@ pipeline.plot_loss_accuracy()
 
 Contributors 
 
-[Emeka Boris Ama]('https://twitter.com/emeka_boris)
-[King Zikie](https://twitter.com/kingzikie)
-[David](https://twitter.com/iEphods)
+- [Emeka Boris Ama]('https://twitter.com/emeka_boris)
+- [King Zikie](https://twitter.com/kingzikie)
+- [David](https://twitter.com/iEphods)
