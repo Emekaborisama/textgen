@@ -51,7 +51,7 @@ metrics='accuracy'
 epochs=100
 verbose = 0
 patience = 10
-batch_size = 300
+batch = 300
 
 ```
 
@@ -66,7 +66,7 @@ configg = pipeline.configmodel(seq_text, lstmlayer, activation)
 
 #### train model
 ```python
-model_history = pipeline.fit(loss = loss, optimizer = optimizer, batch_size = batch_size, metrics = metrics, epochs = epochs, verbose = verbose, patience = patience)
+model_history = pipeline.fit(loss = loss, optimizer = optimizer, batch = batch, metrics = metrics, epochs = epochs, verbose = verbose, patience = patience)
 
 ```
 
