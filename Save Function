@@ -1,0 +1,4 @@
+def saveModel():
+    '''Saves the trained model'''
+    trainedModel = configg.save('./model.h5')
+    return trainedModel
