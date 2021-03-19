@@ -1,0 +1,16 @@
+class Datasets:
+    '''A class containing functions to download real use datasets'''
+    
+    def __init__(self, name):
+        '''Initializes each dataset'''
+        self.name = name
+    
+    def rosaLove(self):
+    '''Downloads rosalove.xyz data file'''
+    path = keras.utils.get_file(
+        'rosaLove.csv',
+        origin='')
+    with open('rosaLove.csv', encoding='utf-8') as f:
+        Corpus = f.readlines()  
+    Corpus = ' '.join(Corpus).lower().split('\n')
+    return Corpus
