@@ -5,4 +5,5 @@ numpy
 matplotlib
 keras
 setuptools>=47.1.1
+sherpa
 

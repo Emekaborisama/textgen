@@ -30,7 +30,7 @@ pip install -U text-gen
 ```
 
 ```python
-from text_gen import tensor_textgen as ttg
+from text_gen import ten_textgen as ttg
 ```
 #### load data
 ```python
@@ -51,13 +51,13 @@ metrics='accuracy'
 epochs=100
 verbose = 0
 patience = 10
-batch_size = 300
+batch = 300
 
 ```
 
 
 ```python
-pipeline = tensor_textgen.tensortext(text)
+pipeline = ttg.tentext(text)
 seq_text = pipeline.sequence(padding_method)
 configg = pipeline.configmodel(seq_text, lstmlayer, activation)
 
@@ -66,7 +66,7 @@ configg = pipeline.configmodel(seq_text, lstmlayer, activation)
 
 #### train model
 ```python
-model_history = pipeline.fit(loss = loss, optimizer = optimizer, batch_size = batch_size, metrics = metrics, epochs = epochs, verbose = verbose, patience = patience)
+model_history = pipeline.fit(loss = loss, optimizer = optimizer, batch = batch, metrics = metrics, epochs = epochs, verbose = 0, patience = patience)
 
 ```
 
@@ -82,6 +82,10 @@ pipeline.predict('hello love')
 pipeline.plot_loss_accuracy()
 ```
 
+#### Hyper parameter optimization
+```python
+pipeline.hyper_params(epochs = 100)
+```
 
 <h1 align="center">
 <span> Give us a star :star: </span> 🐉

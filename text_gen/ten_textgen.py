@@ -10,6 +10,10 @@ import numpy as np
 from tensorflow import keras
 import random
 import matplotlib.pyplot as plt
+import sherpa
+import sherpa.algorithms.bayesian_optimization as bayesian_optimization
+
+
 
 
 def loaddata(data):
@@ -19,7 +23,7 @@ def loaddata(data):
     return Corpus
 
 
-class tensortext:
+class tentext:
     def __init__(self, data):
         self.corpus = data
         #self.column = column
@@ -59,13 +63,13 @@ class tensortext:
     def sequence(self, padding_method):
         '''Tokenizes the data and turns the tokens into sequences'''
         self.padding_method = padding_method
-        print('Tokenizing your data', '-------'*7)
+        #print('Tokenizing your data', '-------'*7)
         self.tokenizer = Tokenizer()
         self.tokenizer.fit_on_texts(self.corpus)
         totalWords = len(self.tokenizer.word_index) + 1
     
         self.sequences = []
-        print('padding sequence', '-------'*7)
+        #print('padding sequence', '-------'*7)
         for line in self.corpus:
             tokenList = self.tokenizer.texts_to_sequences([line])[0]
             for i in range(1, len(tokenList)):
@@ -96,18 +100,25 @@ class tensortext:
         model = models.Sequential()
         model.add(layers.Embedding(self.totalwords, 64,input_length=self.maxSequenceLen - 1))
         model.add(layers.LSTM(lstmlayer))
+        model.add(layers.Dense(self.totalwords - 500, activation=activation))
         model.add(layers.Dense(self.totalwords, activation=activation))
         self.model = model
-    
         print(self.model.summary())
         return self.model
     
-    def fit(self,loss, optimizer, batch, metrics, epochs, verbose, patience):
-        #self.predictors, self._label, self.maxSequenceLen, self.totalwords = seq_data
+    
+    def add_custom_layers(self, layers1, layer2):
+        self.model.add(layers)
+        self.model.add(layers)
+        return self.model
         
     
+    def fit(self,loss, optimizer, batch, metrics, epochs, verbose, patience):
+        #self.predictors, self._label, self.maxSequenceLen, self.totalwords = seq_data
+        self.batch = batch
+    
         '''Sets the training parameters and fits the model to the data'''
-        self.model.compile(loss=loss, optimizer=optimizer, metrics=[metrics])
+        model2 = self.model.compile(loss=loss, optimizer=optimizer, metrics=[metrics])
         history = self.model.fit(self.predictors, self._label, epochs=epochs, batch_size= batch, verbose = verbose,
                         callbacks=[EarlyStopping(monitor='loss', patience=patience,
                                                  restore_best_weights=True)])
@@ -133,8 +144,13 @@ class tensortext:
         return sample_text
 
 
-    """def save()
-    def load()"""
+    def saveModel(self, modelname):
+        self.modelsaved = self.model.save(modelname+'textgen.h5')
+        return self.modelsaved
+    def loadmodel(self, modelname):
+        self.loadmodel = keras.models.load_model(modelname)
+        return self.loadmodel
+
     
     def plot_loss_accuracy(self):
         '''Visualizes the performance of the model in-between epochs'''
@@ -152,7 +168,47 @@ class tensortext:
         fig.suptitle('Loss/Accuracy of the Language Model', fontsize=16, fontweight = 'bold')
     
         return plot
+    
+    def hyper_param(self,epochs):
+        parameters = [sherpa.Continuous('learning_rate', [1e-4, 1e-2]),
+              sherpa.Discrete('num_units', [32, 128]),
+              sherpa.Choice('activation', ['relu', 'adam', 'sigmoid'])]
+        algorithm = bayesian_optimization.GPyOpt(max_num_trials=50)
+        study = sherpa.Study(parameters=parameters,
+                     algorithm=algorithm,
+                     lower_is_better=False)
+        x_test = self._label/300
+        y_test = self._label
+        
+        # Create model
+        model = models.Sequential()
+        model.add(layers.Embedding(self.totalwords, 64, input_length=maxSequenceLen - 1))
+        model.add(layers.LSTM(128))
+        model.add(layers.Dense(self.totalwords, activation='softmax'))
+        model.compile(loss='categorical_crossentropy', optimizer='adam',
+                 metrics=['accuracy'])
 
+        
+        epochs = epochs
+        for trial in study:
+            lr = trial.parameters['learning_rate']
+            num_units = trial.parameters['num_units']
+            act = trial.parameters['activation']
+            
+            for i in range(epochs):
+                model.fit(self.predictors, self._label, batch_size = self.batch)
+                loss, accuracy = model.evaluate(x_test, y_test)
+                study.add_observation(trial=trial, iteration=i,
+                                      objective=accuracy,
+                                      context={'loss': loss})
+                
+                if study.should_trial_stop(trial):
+                    break 
+            study.finalize(trial=trial)
+            print(study.get_best_result())
+
+        
+        
 
 
 
