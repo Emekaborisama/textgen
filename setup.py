@@ -6,7 +6,7 @@ with open('README.md') as readme_file:
 setup_args = dict(
     name='text_gen',
     packages=find_packages(include=['text_gen']),
-    version = '0.4.0',
+    version = '0.5.0',
     description='build a text generation model',
     #long_description_content_type = 'Tensor text generation is a python library that allow you to build a text generation model',
     author='Emeka Boris Ama',

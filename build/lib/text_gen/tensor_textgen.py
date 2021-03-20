@@ -102,13 +102,13 @@ class tensortext:
         print(self.model.summary())
         return self.model
     
-    def fit(self,loss, optimizer, batch_size, metrics, epochs, verbose, patience):
+    def fit(self,loss, optimizer, batch, metrics, epochs, verbose, patience):
         #self.predictors, self._label, self.maxSequenceLen, self.totalwords = seq_data
         
     
         '''Sets the training parameters and fits the model to the data'''
         self.model.compile(loss=loss, optimizer=optimizer, metrics=[metrics])
-        history = self.model.fit(self.predictors, self._label, epochs=epochs, batch_size= batch_size, verbose = verbose,
+        history = self.model.fit(self.predictors, self._label, epochs=epochs, batch_size= batch, verbose = verbose,
                         callbacks=[EarlyStopping(monitor='loss', patience=patience,
                                                  restore_best_weights=True)])
         self.history = history
