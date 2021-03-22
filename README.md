@@ -18,29 +18,33 @@
 
 <p align="center">
 Text gen is a python library that allow you build a custom text generation model with ease :smile:
- Something sweet built with Tensorflow and Pytorch - This is the brain of rosalove ai(rosalove.xyz)
+ Something sweet built with Tensorflow and Pytorch(coming soon) - This is the brain of Rosalove ai (https://rosalove.xyz/)</p>
 
-</p>
 
 
 ## How to use it
-
-
+Install text-gen
 ```bash
 pip install -U text-gen
 ```
-
+import the library
 ```python
 from text_gen import ten_textgen as ttg
 ```
+
+
+Load your data. your data must be in a text format.
+
+Download the example data from the [example folder](https://github.com/Emekaborisama/textgen/tree/master/example)
 #### load data
 ```python
-data = 'rosalove.csv'
+data = 'rl.csv'
 text = ttg.loaddata(data)
 ```
 
 
 #### parameters
+You can choose to write this argument internally in the train model method
 ```python 
 activation = 'softmax'
 lstmlayer = 128
@@ -49,10 +53,11 @@ padding_method = 'pre'
 loss='categorical_crossentropy'
 optimizer='adam'
 metrics='accuracy'
-epochs=100
+epochs=500
 verbose = 0
 patience = 10
 batch = 300
+dropout = 0.25
 
 ```
 
@@ -60,7 +65,7 @@ batch = 300
 ```python
 pipeline = ttg.tentext(text)
 seq_text = pipeline.sequence(padding_method)
-configg = pipeline.configmodel(seq_text, lstmlayer, activation)
+configg = pipeline.configmodel(seq_text, lstmlayer, activation, dropout = dropout)
 
 ```
 
@@ -84,13 +89,16 @@ pipeline.plot_loss_accuracy()
 ```
 
 #### Hyper parameter optimization
+Tune your model to know the best optimizer, activation method to use.
 ```python
-pipeline.hyper_params(epochs = 100)
+pipeline.hyper_params(epochs = 500)
 ```
 
 <h1 align="center">
 <span> Give us a star :star: </span> 🐉
 </h1>
+
+If you want to contribute, take a look at the issues and the [Futurework.md](https://github.com/Emekaborisama/textgen/blob/master/futurework.md) file 
 
 
 Contributors 

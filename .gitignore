@@ -1,4 +1,6 @@
 .*
-build
-dist
+./build
+./dist
 *.egg-info
+./text_gen.egg-info
+/.gitignore
