@@ -101,7 +101,6 @@ class tentext:
         model.add(layers.Embedding(self.totalwords, 64,input_length=self.maxSequenceLen - 1))
         model.add(Dropout(dropout))
         model.add(layers.LSTM(lstmlayer))
-        model.add(layers.Dense(self.totalwords - 500, activation=activation))
         model.add(layers.Dense(self.totalwords, activation=activation))
         self.model = model
         print(self.model.summary())
@@ -117,6 +116,7 @@ class tentext:
     def fit(self,loss, optimizer, batch, metrics, epochs, verbose, patience):
         #self.predictors, self._label, self.maxSequenceLen, self.totalwords = seq_data
         self.batch = batch
+        self.verbose = verbose
     
         '''Sets the training parameters and fits the model to the data'''
         self.model.compile(loss=loss, optimizer=optimizer, metrics=[metrics])
@@ -126,14 +126,14 @@ class tentext:
         self.history = history
         return self.history
     
-    def predict(self, sample_text):               #A text seed is provided
+    def predict(self, sample_text, word_length):               #A text seed is provided
     
         '''Predicts the next text sequences'''
         #model = self.model    
         for wordLength in range(50):   #Generates a text with a range of word length
             tokenList = self.tokenizer.texts_to_sequences([sample_text])[0]  #Turns the seed into sequences
             tokenList = pad_sequences([tokenList], maxlen=self.maxSequenceLen - 1, padding=self.padding_method)
-            predicted = self.model.predict_classes(tokenList, verbose=verbose) #Predicts the next sequence(generated
+            predicted = self.model.predict_classes(tokenList, verbose=self.verbose) #Predicts the next sequence(generated
             outputWord = " "                                         #text)  
             for word, index in self.tokenizer.word_index.items():
                 if index == predicted:

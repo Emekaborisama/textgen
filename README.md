@@ -79,7 +79,13 @@ model_history = pipeline.fit(loss = loss, optimizer = optimizer, batch = batch, 
 
 #### generate text using the phrase
 ```python
-pipeline.predict('hello love')
+pipeline.predict('hello love', word_length = 200)
+```
+
+#### sentence sengment the output
+```python
+output = pipeline.predict('hello love', word_length = 200)
+pipeline.segment(output)
 ```
 
 

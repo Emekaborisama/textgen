@@ -6,7 +6,7 @@ with open('README.md') as readme_file:
 setup_args = dict(
     name='text_gen',
     packages=find_packages(include=['text_gen']),
-    version = '1.0.0',
+    version = '1.2.0',
     description='build a text generation model',
     long_description_content_type='text/markdown',
     long_description = README,
@@ -21,7 +21,7 @@ setup_args = dict(
     test_suite='tests',
 )
 
-install_requires = ['pandas', 'tensorflow', 'torchvision', 'numpy', 'matplotlib', 'keras', 'setuptools>=47.1.1', 'parameter-sherpa']
+install_requires = ['pandas', 'tensorflow', 'torchvision', 'numpy', 'matplotlib', 'keras', 'setuptools>=47.1.1', 'parameter-sherpa', 'deepsegment']
 
 if __name__ == '__main__':
     setup(**setup_args, install_requires=install_requires)
