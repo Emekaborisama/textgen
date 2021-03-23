@@ -43,36 +43,18 @@ text = ttg.loaddata(data)
 ```
 
 
-#### parameters
-You can choose to write this argument internally in the train model method
-```python 
-activation = 'softmax'
-lstmlayer = 128
-padding_method = 'pre'
-
-loss='categorical_crossentropy'
-optimizer='adam'
-metrics='accuracy'
-epochs=500
-verbose = 0
-patience = 10
-batch = 300
-dropout = 0.25
-
-```
-
 
 ```python
 pipeline = ttg.tentext(text)
-seq_text = pipeline.sequence(padding_method)
-configg = pipeline.configmodel(seq_text, lstmlayer, activation, dropout = dropout)
+seq_text = pipeline.sequence(padding_method = 'pre')
+configg = pipeline.configmodel(seq_text, lstmlayer = 128, activation = 'softmax', dropout = 0.25)
 
 ```
 
 
 #### train model
 ```python
-model_history = pipeline.fit(loss = loss, optimizer = optimizer, batch = batch, metrics = metrics, epochs = epochs, verbose = 0, patience = patience)
+model_history = pipeline.fit(loss = 'categorical_crossentropy', optimizer = 'adam', batch = 300, metrics = 'accuracy', epochs = 500, verbose = 0, patience = 10)
 
 ```
 
