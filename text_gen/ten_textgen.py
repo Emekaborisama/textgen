@@ -12,6 +12,7 @@ import random
 import matplotlib.pyplot as plt
 import sherpa
 import sherpa.algorithms.bayesian_optimization as bayesian_optimization
+from deepsegment import DeepSegment
 
 
 
@@ -126,7 +127,7 @@ class tentext:
         self.history = history
         return self.history
     
-    def predict(self, sample_text, word_length):               #A text seed is provided
+    def predict(self, sample_text, word_length, segment):               #A text seed is provided
     
         '''Predicts the next text sequences'''
         #model = self.model    
@@ -141,7 +142,14 @@ class tentext:
                     break
             sample_text += " " + outputWord
             #Returns the seed plus generated text
-        print(sample_text)
+        self.sample_text = sample_text
+        if segment == True:
+            segmenter = DeepSegment('en')
+            result = segmenter.segment(self.sample_text)
+            sample_text = result
+        else:
+            print(sample_text)
+            sample_text = self.sample_text
         return sample_text
 
 
@@ -169,7 +177,13 @@ class tentext:
         fig.suptitle('Loss/Accuracy of the Language Model', fontsize=16, fontweight = 'bold')
     
         return plot
-    
+
+
+    def segmentsent(self, text):
+        segmenter = DeepSegment('en')
+        result = segmenter.segment(text)
+        return result
+
     def hyper_param(self,epochs):
         parameters = [sherpa.Continuous('learning_rate', [1e-4, 1e-2]),
               sherpa.Discrete('num_units', [32, 128]),

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: text-gen
-Version: 1.2.0
+Version: 1.4.0
 Summary: build a text generation model
 Home-page: https://github.com/Emekaborisama/textgen
 Author: Emeka Boris Ama
@@ -87,13 +87,7 @@ Description:
         
         #### generate text using the phrase
         ```python
-        pipeline.predict('hello love', word_length = 200)
-        ```
-        
-        #### sentence sengment the output
-        ```python
-        output = pipeline.predict('hello love', word_length = 200)
-        pipeline.segment(output)
+        pipeline.predict('hello love', word_length = 200, segment = True)
         ```
         
         
