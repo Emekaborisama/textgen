@@ -43,7 +43,7 @@ text = ttg.loaddata(data)
 ```
 
 
-
+### build our Model Architeture 
 ```python
 pipeline = ttg.tentext(text)
 seq_text = pipeline.sequence(padding_method = 'pre')
@@ -76,6 +76,15 @@ Tune your model to know the best optimizer, activation method to use.
 pipeline.hyper_params(epochs = 500)
 ```
 
+```python
+pipeline.saveModel('model')
+```
+
+#use a saved model for prediction
+```python
+#the corpus is the train text file
+ttg.load_model_predict(corpus = corpus, padding_method = 'pre', modelname = '../input/model2/model2textgen.h5', sample_text = 'yo yo', word_length = 100)
+```
 <h1 align="center">
 <span> Give us a star :star: </span> 🐉
 </h1>

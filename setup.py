@@ -6,7 +6,7 @@ with open('README.md') as readme_file:
 setup_args = dict(
     name='text_gen',
     packages=find_packages(include=['text_gen']),
-    version = '1.4.0',
+    version = '1.8.0',
     description='build a text generation model',
     long_description_content_type='text/markdown',
     long_description = README,

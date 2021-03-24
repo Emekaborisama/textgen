@@ -3,6 +3,7 @@ import random
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras import layers, models
 from tensorflow.keras.preprocessing.text import Tokenizer
+tokenizer = Tokenizer()
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.layers import Dropout
@@ -127,14 +128,14 @@ class tentext:
         self.history = history
         return self.history
     
-    def predict(self, sample_text, word_length, segment):               #A text seed is provided
+    def predict(self, sample_text, word_length, segment, verbose):               #A text seed is provided
     
         '''Predicts the next text sequences'''
         #model = self.model    
-        for wordLength in range(50):   #Generates a text with a range of word length
+        for wordLength in range(word_length):   #Generates a text with a range of word length
             tokenList = self.tokenizer.texts_to_sequences([sample_text])[0]  #Turns the seed into sequences
             tokenList = pad_sequences([tokenList], maxlen=self.maxSequenceLen - 1, padding=self.padding_method)
-            predicted = self.model.predict_classes(tokenList, verbose=self.verbose) #Predicts the next sequence(generated
+            predicted = self.model.predict_classes(tokenList, verbose=verbose) #Predicts the next sequence(generated
             outputWord = " "                                         #text)  
             for word, index in self.tokenizer.word_index.items():
                 if index == predicted:
@@ -156,9 +157,7 @@ class tentext:
     def saveModel(self, modelname):
         self.modelsaved = self.model.save(modelname+'textgen.h5')
         return self.modelsaved
-    def loadmodel(self, modelname):
-        self.loadmodel = keras.models.load_model(modelname)
-        return self.loadmodel
+    
 
     
     def plot_loss_accuracy(self):
@@ -223,8 +222,49 @@ class tentext:
             print(study.get_best_result())
 
         
-        
 
+
+def load_model_predict(corpus, padding_method, modelname, word_length, sample_text):
+    model = keras.models.load_model(modelname, compile=False)
+    '''Tokenizes the data and turns the tokens into sequences'''
+    padding_method = padding_method
+    #print('Tokenizing your data', '-------'*7)
+    tokenizer.fit_on_texts(corpus)
+    totalWords = len(tokenizer.word_index) + 1
+    sequences = []
+    #print('padding sequence', '-------'*7)
+    for line in corpus:
+        tokenList = tokenizer.texts_to_sequences([line])[0]
+        for i in range(1, len(tokenList)):
+            ngramSequence = tokenList[:i+1]
+            sequences.append(ngramSequence)
+    #self.sequences = sequences
+    totalwords = totalWords
+    #print(totalWords)
+    #print(self.sequences)
+    '''Gives the sequences a uniform length by padding them'''
+    
+    maxSequenceLen = max([len(seq) for seq in sequences])
+    _sequences = np.array(pad_sequences(sequences, maxlen=maxSequenceLen, padding=padding_method))
+    
+    predictors, label = _sequences[:,:-1], _sequences[:,-1]
+    _label = to_categorical(label, num_classes=totalwords)
+    #print(totalWords)
+    #print(sequences[:5])
+    def generateText(seed):
+        for wordLength in range(word_length):   #Generates a text with a range of word length
+            tokenList = tokenizer.texts_to_sequences([seed])[0]  #Turns the seed into sequences
+            tokenList = pad_sequences([tokenList], maxlen=maxSequenceLen - 1, padding='pre')
+            predicted = model.predict_classes(tokenList, verbose=0) #Predicts the next sequence(generated
+            outputWord = " "                                         #text)  
+            for word, index in tokenizer.word_index.items():
+                if index == predicted:
+                    outputWord = word
+                    break
+            seed += " " + outputWord     #Returns the seed plus generated text
+        return seed
+    ree = generateText(seed = sample_text)
+    return ree
 
 
 
