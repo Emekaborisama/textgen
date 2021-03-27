@@ -4,7 +4,7 @@
 
 <p align="center">
 
-[![Downloads](https://pepy.tech/badge/text-gen)](https://pepy.tech/project/text-gen)
+![Downloads](https://pepy.tech/badge/text-gen)](https://pepy.tech/project/text-gen)
 <img alt="python" src="https://img.shields.io/badge/python-%3E%3D3.6-blue?logo=python">
 <img alt="tensorflow" src="https://img.shields.io/badge/tensorflow-%3E%3D2.3.0-orange?logo=tensorflow">
 <a href="https://pypi.org/project/text-gen/">
