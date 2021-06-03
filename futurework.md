@@ -1,6 +1,6 @@
-write a pytorch text generation module 
-write a tensorflow GRU method and evaluate the model over the other models
-Add Tensorflow board 
-Easily deployment with flask api
-Write articles
-Write test
+- write a pytorch text generation module 
+- write a tensorflow GRU method and evaluate the model over the other models
+- Add Tensorflow board 
+- Easily deployment with flask api
+- Write articles
+- Write test
