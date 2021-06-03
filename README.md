@@ -80,7 +80,7 @@ pipeline.hyper_params(epochs = 500)
 pipeline.saveModel('model')
 ```
 
-#use a saved model for prediction
+### use a saved model for prediction
 ```python
 #the corpus is the train text file
 ttg.load_model_predict(corpus = corpus, padding_method = 'pre', modelname = '../input/model2/model2textgen.h5', sample_text = 'yo yo', word_length = 100)
