@@ -177,11 +177,12 @@ class tentext:
     
         return plot
 
-
+"""
     def segmentsent(self, text):
         segmenter = DeepSegment('en')
         result = segmenter.segment(text)
         return result
+    """
 
     def hyper_param(self,epochs):
         parameters = [sherpa.Continuous('learning_rate', [1e-4, 1e-2]),
