@@ -6,6 +6,5 @@ matplotlib
 keras
 setuptools>=47.1.1
 parameter-sherpa
-deepsegment
 tensorflow-serving-api==1.12.0
 
