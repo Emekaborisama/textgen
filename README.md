@@ -1,4 +1,4 @@
-
+Ps: we are adding transformer model soon
 <h1 align="center">
 <p>Text Gen :goat:</p>
 
