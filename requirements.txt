@@ -9,3 +9,4 @@ parameter-sherpa
 tensorflow-serving-api==1.12.0
 
 pillow>=8.3.2 # not directly required, pinned by Snyk to avoid a vulnerability
+werkzeug>=2.2.3 # not directly required, pinned by Snyk to avoid a vulnerability
